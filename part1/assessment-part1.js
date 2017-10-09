@@ -7,20 +7,20 @@
 
 // Given the following nested functions:
 
-function daBears(){
+function daBears() {
   var isFurry = true;
 
-  function papaBear (){
+  function papaBear() {
     var porridge = "Too Hot!";
     var chair = "Too Big!";
     var bed = "Too Hard!";
     var feeling = "Angry";
 
-    function mamaBear(){
+    function mamaBear() {
       var porridge = "Too Cold!";
       var bed = "Too Soft!";
 
-      function babyBear(){
+      function babyBear() {
         var porridge = "Just right!";
         var chair = "Just right!";
         var bed = "Just right!";
@@ -30,7 +30,7 @@ function daBears(){
     }
   }
 
-  function goldilocks(){
+  function goldilocks() {
     var feeling = "Hungry";
     var isFurry = false;
     var isDinner = true;
@@ -44,26 +44,47 @@ function daBears(){
 // (Delete wrong answers, leave correct ones)
 
 var fairyTale1 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var tempArray = [];
+for (let i = 0; i < fairyTale1.length; i++) {
+  if (fairyTale1[i] === 'papaBear') {
+    tempArray.push('papaBear');
+  } else if (fairyTale1[i] === 'mamaBear') {
+    tempArray.push('mamaBear');
+  }
+}
+fairyTale1 = tempArray;
 
 // Which function(s) access the "feeling" variable and get "Hungry"
 // (Delete wrong answers, leave correct ones)
 
 var fairyTale2 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+fairyTale2 = fairyTale2.filter(function (i) {
+  return i === 'goldilocks';
+})
 
 // Which function(s) access the "porridge" variable and get "Too Cold!"
 // (Delete wrong answers, leave correct ones)
 
 var fairyTale3 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+fairyTale3 = fairyTale3.filter(function (i) {
+  return i === 'mamaBear';
+})
 
 // Which function(s) access the "sleepy" variable and get undefined
 // (Delete wrong answers, leave correct ones)
 
 var fairyTale4 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+fairyTale4 = fairyTale4.filter(function (i) {
+  return i !== 'babyBear';
+})
 
 // Which function(s) access the isFurry variable and get true
 // (Delete wrong answers, leave correct ones)
 
 var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+fairyTale5 = fairyTale5.filter(function (i) {
+  return i !== 'goldilocks';
+})
 
 
 // *************
@@ -83,7 +104,17 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 
 // CODE HERE...
 
+function Vehicle() {
+  this.gasRemaining = 100;
 
+  Vehicle.prototype.drive = function () {
+    this.gasRemaining -= 25;
+  }
+}
+var mustang = new Vehicle();
+var charger = new Vehicle();
+charger.drive();
+mustang.drive(); mustang.drive();
 
 
 
@@ -109,6 +140,16 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 
 // CODE HERE...
 
+String.prototype.grammarPolice = function (str) {
+  var tempArr = [];
+  var arr = this.toLowerCase().split(' ');
+
+  for (var i = 0; i < arr.length; i++) {
+    tempArr.push(arr[i].charAt(0).toUpperCase() + arr[i].slice(1))
+  }
+  return tempArr.join(' ');
+}
+
 
 
 // *************
@@ -127,7 +168,15 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 
 // CODE HERE...
 
-
+function valueType (value1, value2) {
+  if(value1 === value2) {
+    return 'Exactly the same'
+  } else if(value1 == value2) {
+    return 'Same value, different types'
+  } else {
+    return 'Different values'
+  }
+}
 
 // *************
 // * PROBLEM 5 *
@@ -139,5 +188,11 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 // When your promise receives its results, set variable 'theAnswer' (seen below) equal to the result.
 
 var theAnswer = "Unknown";
+
+function promiseCatcher (value) {
+  value.then(response => {
+    theAnswer = response;
+  })
+}
 
 // CODE HERE...
